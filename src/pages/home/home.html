@@ -1,17 +1,39 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Gate home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding class="home-register-screen">
+
+    <h2 class="subtitle">Welcome to "Call The Gate"!</h2>
+
+    <p style="line-height:1.6; text-align:justify;">
+        From now, You don't have to call every time You need to open your gate. Enter your phone number, phone number of your gate, enable GPS, set autocalling radius and give to "Call The Gate" do the job!
+    </p>
+
+    <h3>Create account:</h3>
+
+    <ion-list>
+
+      <ion-item>
+        <ion-input type="text" value="" placeholder="*Username"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="email" value="" placeholder="*Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" placeholder="*Password"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <button ion-button color="primary" block>Sign Up</button>
+    <br>
+    <hr>
+    <p style="text-align:center;">or login with your exists account here</p>
+    <button [navPush]="loginPage" ion-button color="primary" block>Login</button>
+
 </ion-content>
