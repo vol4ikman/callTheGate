@@ -9,22 +9,22 @@
 
 <ion-content padding>
 
-    <form class="ctg-login-form">
+    <div class="call-the-gate-login-form" id="all-the-gate-login-form">
 
         <ion-list>
 
-          <ion-item>
-            <ion-input type="email" value="" placeholder="*Email"></ion-input>
-          </ion-item>
+            <ion-item>
+                <ion-input type="email" value="" [(ngModel)]="user.email" placeholder="*Email"></ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-input type="password" placeholder="*Password"></ion-input>
-          </ion-item>
+            <ion-item>
+                <ion-input type="password" [(ngModel)]="user.password" placeholder="*Password"></ion-input>
+            </ion-item>
 
         </ion-list>
 
-        <button ion-button color="primary" block>Log me in!</button>
+        <button ion-button color="primary" block (click)="loginUser(user)">Log me in!</button>
 
-    </form>
+    </div>
 
 </ion-content>

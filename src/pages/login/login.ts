@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import { User } from "../../models/user";
+
 
 @IonicPage()
 @Component({
@@ -15,11 +12,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    user = {} as User;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+    constructor( public navCtrl: NavController, public navParams: NavParams, private afAuth: AngularFireAuth, private alertCtrl: AlertController ) {
+
+    }
+
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad LoginPage');
+    }
+
+    presentAlert( error_title ) {
+      let alert = this.alertCtrl.create({
+        title: error_title,
+        buttons: ['Dismiss']
+      });
+      alert.present();
+    }
+
+    loginUser(user: User) {
+        try {
+            const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+            if (result) {
+                console.log(result);
+                //this.navCtrl.setRoot('HomePage');
+                return;
+            }
+        }
+        catch (e) {
+            console.error(e);
+            this.presentAlert( e.message );
+        }
+      }
 
 }

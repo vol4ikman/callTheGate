@@ -12,28 +12,59 @@
         From now, You don't have to call every time You need to open your gate. Enter your phone number, phone number of your gate, enable GPS, set autocalling radius and give to "Call The Gate" do the job!
     </p>
 
-    <h3>Create account:</h3>
+    <div class="not-loggedin-user" *ngIf="! loggedin">
 
-    <ion-list>
+        <h3>Create account:</h3>
 
-      <ion-item>
-        <ion-input type="text" value="" placeholder="*Username"></ion-input>
-      </ion-item>
+        <div class="call-the-gate-register" id="call-the-gate-register">
 
-      <ion-item>
-        <ion-input type="email" value="" placeholder="*Email"></ion-input>
-      </ion-item>
+            <ion-list>
 
-      <ion-item>
-        <ion-input type="password" placeholder="*Password"></ion-input>
-      </ion-item>
+                <ion-item>
+                    <ion-label>*First name</ion-label>
+                    <ion-input type="text" value="" [(ngModel)]="user.first_name"></ion-input>
+                </ion-item>
 
-    </ion-list>
+                <ion-item>
+                    <ion-label>*Last name</ion-label>
+                    <ion-input type="email" value="" [(ngModel)]="user.last_name"></ion-input>
+                </ion-item>
 
-    <button ion-button color="primary" block>Sign Up</button>
-    <br>
-    <hr>
-    <p style="text-align:center;">or login with your exists account here</p>
-    <button [navPush]="loginPage" ion-button color="primary" block>Login</button>
+                <ion-item>
+                    <ion-label>*Country</ion-label>
+                    <ion-select name="country" [(ngModel)]="user.country">
+                        <ion-option *ngFor="let coutry of coutries" value="{{coutry.code}}">{{coutry.name}}</ion-option>
+                    </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>*Email</ion-label>
+                    <ion-input type="email" value="" [(ngModel)]="user.email"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>*Password</ion-label>
+                    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+                </ion-item>
+
+            </ion-list>
+
+            <button ion-button color="primary" block (click)="register(user)">Sign Up</button>
+
+        </div>
+
+        <br>
+        <hr>
+        <p style="text-align:center;">or login with your exists account here</p>
+        <button [navPush]="loginPage" ion-button color="primary" block>Login</button>
+
+    </div>
+
+    <div class="loggedin-user" *ngIf="loggedin">
+        <p>Hi</p>
+        <p>
+            <button ion-button block color="dark" (click)="logoutUser()">Log out</button>
+        </p>
+    </div>
 
 </ion-content>
